@@ -1,22 +1,16 @@
-import { User } from './auth.model';
+import { InjectModel } from '@nestjs/mongoose';
+
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { Model } from 'mongoose';
+import { User } from './auth.model';
 @Injectable()
 export class AuthService {
-  users: User[] = [];
+  private users: User[] = [];
+  constructor(@InjectModel('User') private userModel: Model<User>) {}
 
-  createUser(name: string, email: string) {
-    const userID = Math.random().toString();
-    const newUser = new User(userID, name, email);
-    this.users.push(newUser);
-  }
-  getUsers() {
-    return [...this.users];
-  }
-  getOneUser(userId: string) {
-    const users = this.users.find((user) => user.id == userId);
-    if (!users) {
-      throw new NotFoundException('User not found ');
-    }
-    return { ...users };
+  async createUser(username: string, email: string, password: string) {
+    const newUser = new this.userModel({ username, email, password });
+    await newUser.save();
+    return { newUser };
   }
 }
