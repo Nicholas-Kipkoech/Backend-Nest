@@ -6,18 +6,15 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
   @Post()
   createUser(
-    @Body('name') username: string,
+    @Body('username') username: string,
     @Body('email') userEmail: string,
-  ): any {
-    const generatedId = this.authService.createUser(username, userEmail);
-    return { id: generatedId };
-  }
-  @Get()
-  getAllUsers() {
-    return this.authService.getUsers();
-  }
-  @Get(':id')
-  getOneUser(@Param('id') userId: string) {
-    return this.authService.getOneUser(userId);
+    @Body('password') userPassword: string,
+  ): Promise<any> {
+    const createdUser = this.authService.createUser(
+      username,
+      userEmail,
+      userPassword,
+    );
+    return createdUser;
   }
 }
