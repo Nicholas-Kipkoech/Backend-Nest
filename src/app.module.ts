@@ -5,7 +5,12 @@ import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
-  imports: [AuthModule, MongooseModule.forRoot(process.env.DB_URI)],
+  imports: [
+    AuthModule,
+    MongooseModule.forRoot(
+      'mongodb+srv://Nickey:Nickey@cluster0.i0gut.mongodb.net/Touch-inspiration?retryWrites=true&w=majority',
+    ),
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
