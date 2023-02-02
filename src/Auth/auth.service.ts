@@ -1,10 +1,22 @@
 import { User } from './auth.model';
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 @Injectable()
 export class AuthService {
-  user: User[] = [];
-  createUser(id: string, name: string, email: string) {
-    const newUser = new User(id, name, email);
-    this.user.push(newUser);
+  users: User[] = [];
+
+  createUser(name: string, email: string) {
+    const userID = Math.random().toString();
+    const newUser = new User(userID, name, email);
+    this.users.push(newUser);
+  }
+  getUsers() {
+    return [...this.users];
+  }
+  getOneUser(userId: string) {
+    const users = this.users.find((user) => user.id == userId);
+    if (!users) {
+      throw new NotFoundException('User not found ');
+    }
+    return { ...users };
   }
 }
