@@ -6,7 +6,12 @@ export const walletSchema = new mongoose.Schema({
     ref: 'User',
   },
   address: {
-    type: Number,
+    type: String,
+    required: true,
+    unique: true,
+  },
+  accountName: {
+    type: String,
     required: true,
   },
   balance: {
@@ -16,6 +21,7 @@ export const walletSchema = new mongoose.Schema({
 });
 export interface Wallet {
   user?: any;
-  address: number;
+  address: string;
   balance: number;
+  accountName: string;
 }
