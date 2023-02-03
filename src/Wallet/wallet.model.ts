@@ -15,7 +15,7 @@ export const walletSchema = new mongoose.Schema({
   },
 });
 export interface Wallet {
-  user: object;
+  user?: any;
   address: number;
   balance: number;
 }
