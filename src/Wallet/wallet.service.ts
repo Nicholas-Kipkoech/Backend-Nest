@@ -1,7 +1,7 @@
 import { Wallet } from './wallet.model';
 import { Injectable, NotFoundException, Param } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Error, Model } from 'mongoose';
+import { Model } from 'mongoose';
 import { User } from 'src/Auth/auth.model';
 
 @Injectable()
@@ -32,5 +32,12 @@ export class WalletService {
       throw new NotFoundException('Wallets not found!');
     }
     return { wallets };
+  }
+  async getUserWallet(userID: string) {
+    const UserWallet = await this.walletModel.findOne({ user: userID });
+    if (!UserWallet) {
+      throw new NotFoundException('Wallet not found');
+    }
+    return { UserWallet };
   }
 }
