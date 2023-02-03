@@ -13,4 +13,11 @@ export class AuthService {
     await newUser.save();
     return { newUser };
   }
+  async getUsers() {
+    const users = await this.userModel.find({}).exec();
+    if (!users) {
+      throw new NotFoundException('Users cannot be found');
+    }
+    return { users };
+  }
 }
