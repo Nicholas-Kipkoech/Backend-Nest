@@ -1,5 +1,5 @@
 import { TransactionService } from './transaction.service';
-import { Body, Controller, Param, Post } from '@nestjs/common';
+import { Body, Controller, Param, Post, Get } from '@nestjs/common';
 @Controller('transaction')
 export class TransactionController {
   constructor(private readonly transactionService: TransactionService) {}
@@ -17,5 +17,10 @@ export class TransactionController {
       amount,
     );
     return newTransaction;
+  }
+  @Get('fetch-all')
+  getAllTx() {
+    const transactions = this.transactionService.getAllTx();
+    return transactions;
   }
 }
