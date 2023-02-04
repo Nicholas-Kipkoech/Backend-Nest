@@ -20,11 +20,13 @@ export class TransactionService {
   ) {
     const user = await this.userModel.findOne({ _id: userID });
     const wallet = await this.walletModel.findOne({ _id: walletID });
+    const new_balance = wallet.balance - amount;
     const newTransaction = new this.transactionModel({
-      user,
-      wallet,
-      desc,
-      amount,
+      user: user,
+      wallet: wallet.id,
+      desc: desc,
+      amount: amount,
+      balance: new_balance,
     });
     await newTransaction.save();
     return {
