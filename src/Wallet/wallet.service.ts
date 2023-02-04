@@ -52,4 +52,13 @@ export class WalletService {
     return { wallet };
   }
   //funding the wallet or adding income
+  async fundWallet(newBalance: number, walletID: string) {
+    const updatedWallet = await this.getOneWallet(walletID);
+    if (newBalance) {
+      updatedWallet.wallet.balance = newBalance;
+    }
+    console.log(updatedWallet.wallet.balance);
+    await updatedWallet.wallet.save();
+    return { updatedWallet: updatedWallet.wallet };
+  }
 }
