@@ -1,5 +1,5 @@
 import { WalletService } from './wallet.service';
-import { Body, Controller, Post, Param, Get } from '@nestjs/common';
+import { Body, Controller, Post, Param, Get, Patch } from '@nestjs/common';
 @Controller('wallets')
 export class WalletController {
   constructor(private readonly walletService: WalletService) {}
@@ -37,5 +37,14 @@ export class WalletController {
   getWallet(@Param('walletID') walletID: string) {
     const wallet = this.walletService.getOneWallet(walletID);
     return wallet;
+  }
+  //fund wallet or add income
+  @Patch('fund/:id')
+  async updateWallet(
+    @Param('id') walletID: string,
+    @Body('balance') balance: number,
+  ) {
+    const newUpdatedWallet = this.walletService.fundWallet(balance, walletID);
+    return newUpdatedWallet;
   }
 }
