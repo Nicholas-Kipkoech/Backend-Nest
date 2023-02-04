@@ -54,8 +54,10 @@ export class WalletService {
   //funding the wallet or adding income
   async fundWallet(newBalance: number, walletID: string) {
     const updatedWallet = await this.getOneWallet(walletID);
+    //updating income with new value
+    const updatedBalance = updatedWallet.wallet.balance + newBalance;
     if (newBalance) {
-      updatedWallet.wallet.balance = newBalance;
+      updatedWallet.wallet.balance = updatedBalance;
     }
     await updatedWallet.wallet.save();
     return { updatedWallet: updatedWallet.wallet };
