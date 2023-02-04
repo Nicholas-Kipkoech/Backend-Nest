@@ -18,9 +18,24 @@ export class WalletController {
     );
     return createWallet;
   }
+  //fetch all wallets
   @Get()
   getAllWallets() {
     const wallets = this.walletService.getWallets();
     return wallets;
+  }
+
+  //get wallets per user using userID
+  @Get(':userId')
+  getUserWallet(@Param('userId') userID: string) {
+    const userWallet = this.walletService.getUserWallets(userID);
+    return userWallet;
+  }
+  //fetch one wallet using walletID
+
+  @Get(':walletID')
+  getWallet(@Param('walletID') walletID: string) {
+    const wallet = this.walletService.getOneWallet(walletID);
+    return wallet;
   }
 }
