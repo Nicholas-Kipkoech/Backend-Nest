@@ -1,3 +1,4 @@
+import { NotFoundException } from '@nestjs/common';
 import { User } from 'src/Auth/auth.model';
 import { Wallet } from './../Wallet/wallet.model';
 import { InjectModel } from '@nestjs/mongoose';
@@ -10,6 +11,7 @@ export class TransactionService {
     @InjectModel('Wallet') private walletModel: Model<Wallet>,
     @InjectModel('User') private userModel: Model<User>,
   ) {}
+  //fn for creating tx
   async createTransaction(
     userID: string,
     walletID: string,
@@ -28,7 +30,15 @@ export class TransactionService {
     });
     await newTransaction.save();
     return {
-      msg: `${user.username}  has paid ksh ${amount} for ${desc} . Balance is ${new_balance} account name: ${wallet.accountName}`,
+      newTransaction,
     };
+  }
+  //fn for getting all TX
+  async getAllTx() {
+    const transactions = await this.transactionModel.find({}).exec();
+    if (transactions.length === 0) {
+      throw new NotFoundException('Failed to fetch transactions');
+    }
+    return { transactions };
   }
 }
