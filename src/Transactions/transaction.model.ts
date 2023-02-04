@@ -6,6 +6,7 @@ export const transactionSchema = new mongoose.Schema(
     wallet: { type: mongoose.Schema.Types.ObjectId, ref: 'Wallet' },
     desc: { type: String, required: true },
     amount: { type: Number, required: true },
+    balance: { type: Number },
   },
   { timestamps: true },
 );
@@ -15,4 +16,5 @@ export interface Transaction {
   wallet?: any;
   desc: string;
   amount: number;
+  balance: number;
 }

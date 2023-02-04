@@ -57,7 +57,6 @@ export class WalletService {
     if (newBalance) {
       updatedWallet.wallet.balance = newBalance;
     }
-    console.log(updatedWallet.wallet.balance);
     await updatedWallet.wallet.save();
     return { updatedWallet: updatedWallet.wallet };
   }
