@@ -19,7 +19,7 @@ export const walletSchema = new mongoose.Schema({
     default: 0,
   },
 });
-export interface Wallet {
+export interface Wallet extends mongoose.Document {
   user?: any;
   address: string;
   balance: number;
