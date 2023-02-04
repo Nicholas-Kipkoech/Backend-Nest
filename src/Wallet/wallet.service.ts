@@ -1,5 +1,5 @@
 import { Wallet } from './wallet.model';
-import { Injectable, NotFoundException, Param } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User } from 'src/Auth/auth.model';
@@ -10,6 +10,7 @@ export class WalletService {
     @InjectModel('Wallet') private walletModel: Model<Wallet>,
     @InjectModel('User') private userModel: Model<User>,
   ) {}
+  //creating a wallet by user
   async createWallet(
     userEmail: string,
     address: string,
@@ -26,6 +27,7 @@ export class WalletService {
     await wallet.save();
     return { wallet };
   }
+  //getting all registered wallets and users owning that wallet
   async getWallets() {
     const wallets = await this.walletModel.find({}).exec();
     if (wallets.length === 0) {
@@ -33,11 +35,21 @@ export class WalletService {
     }
     return { wallets };
   }
-  async getUserWallet(userID: string) {
-    const UserWallet = await this.walletModel.findOne({ user: userID });
+  //getting all user wallets
+  async getUserWallets(userID: string) {
+    const UserWallet = await this.walletModel.find({ user: userID });
     if (!UserWallet) {
-      throw new NotFoundException('Wallet not found');
+      throw new NotFoundException('Wallets not found');
     }
     return { UserWallet };
   }
+  //getting one wallet using wallet_id
+  async getOneWallet(walletID: string) {
+    const wallet = await this.walletModel.findOne({ _id: walletID }).exec();
+    if (!wallet) {
+      throw new NotFoundException('Wallet not found!');
+    }
+    return { wallet };
+  }
+  //funding the wallet or adding income
 }
