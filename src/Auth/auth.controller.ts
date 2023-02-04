@@ -17,7 +17,7 @@ export class AuthController {
     );
     return createdUser;
   }
-  @Get()
+  @Get('users')
   async getAllUsers() {
     const users = await this.authService.getUsers();
     return { users: users.users };
