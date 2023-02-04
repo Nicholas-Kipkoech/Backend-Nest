@@ -40,7 +40,7 @@ export class WalletController {
   }
   //fund wallet or add income
   @Patch('fund/:id')
-  async updateWallet(
+  updateWallet(
     @Param('id') walletID: string,
     @Body('balance') balance: number,
   ) {
