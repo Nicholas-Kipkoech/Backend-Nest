@@ -26,14 +26,14 @@ export class WalletController {
   }
 
   //get wallets per user using userID
-  @Get(':userId')
+  @Get('user/:userId')
   getUserWallet(@Param('userId') userID: string) {
     const userWallet = this.walletService.getUserWallets(userID);
     return userWallet;
   }
   //fetch one wallet using walletID
 
-  @Get(':walletID')
+  @Get('wallet/:walletID')
   getWallet(@Param('walletID') walletID: string) {
     const wallet = this.walletService.getOneWallet(walletID);
     return wallet;
