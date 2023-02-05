@@ -12,9 +12,7 @@ import { MongooseModule } from '@nestjs/mongoose';
     AuthModule,
     WalletModule,
     TransactionModule,
-    MongooseModule.forRoot(
-      'mongodb+srv://Nickey:Nickey@cluster0.i0gut.mongodb.net/Touch-inspiration?retryWrites=true&w=majority',
-    ),
+    MongooseModule.forRoot('YOUR MONGOOSE STRING'),
   ],
   controllers: [AppController],
   providers: [AppService],
