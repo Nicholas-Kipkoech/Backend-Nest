@@ -10,6 +10,10 @@
 
 
 ## Code solution :sparkles:
+
+##### Before you run this project please make sure you add your `mongoose string` on your `app.module.ts` file!.
+
+![alt text](images/Mongoose.png)
 ### 1. A user signs up using `email,password,username`.
 
 
