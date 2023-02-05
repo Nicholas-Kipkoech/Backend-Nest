@@ -1,3 +1,4 @@
+import { transactionSchema } from './../Transactions/transaction.model';
 import { WalletController } from './wallet.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Module } from '@nestjs/common';
@@ -9,6 +10,9 @@ import { UserSchema } from 'src/Auth/auth.model';
   imports: [
     MongooseModule.forFeature([{ name: 'Wallet', schema: walletSchema }]),
     MongooseModule.forFeature([{ name: 'User', schema: UserSchema }]),
+    MongooseModule.forFeature([
+      { name: 'Transaction', schema: transactionSchema },
+    ]),
   ],
   controllers: [WalletController],
   providers: [WalletService],
