@@ -1,5 +1,13 @@
 # :star2: :star2: :star2: Backend Test for Touch inspiration :star2: :star2: :star2: :star2:
 
+
+### `User Flow`
+1. A user signs up (no sign in required. Disregard authentication).
+2. A user can create wallets.
+3. A user can add expenses or incomes to a wallet.
+4. A user can view their profile with the summary of wallets and balances. Show overall balance of all wallets and balance of each wallet.
+5. A user can drill into each wallet to see balance and transactions.`
+
 ### 1. A user signs up using `email,password,username`.
 
 
