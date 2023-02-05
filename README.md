@@ -15,3 +15,7 @@
 ### 4. A user is able to view his or her own wallets 
 
 ![alt text](images/fetchWallets.png)
+
+### 5. A user is able to add expense or make a transaction 
+
+![alt text](images/createTransaction.png)
