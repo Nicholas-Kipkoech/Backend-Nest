@@ -22,7 +22,7 @@ export class TransactionService {
     const wallet = await this.walletModel.findOne({ _id: walletID });
     const new_balance = wallet.balance - amount;
     const newTransaction = new this.transactionModel({
-      user: user,
+      user: user._id,
       wallet: wallet.id,
       desc: desc,
       amount: amount,
