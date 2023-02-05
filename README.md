@@ -16,6 +16,6 @@
 
 ![alt text](images/fetchWallets.png)
 
-### 5. A user is able to add expense or make a transaction 
+### 5. A user is able to add expense or make a transaction using `userID` and `walletID`
 
 ![alt text](images/createTransaction.png)
