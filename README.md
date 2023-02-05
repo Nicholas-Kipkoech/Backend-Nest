@@ -19,3 +19,7 @@
 ### 5. A user is able to add expense or make a transaction using `userID` and `walletID`
 
 ![alt text](images/createTransaction.png)
+
+### 6. Drilling into a wallet to check balance and Transaction Done on that wallet using `walletID`.
+
+![alt text](images/walletTX.png)
