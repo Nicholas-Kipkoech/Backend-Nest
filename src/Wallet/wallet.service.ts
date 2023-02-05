@@ -3,13 +3,14 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User } from 'src/Auth/auth.model';
+import { Transaction } from 'src/Transactions/transaction.model';
 
 @Injectable()
 export class WalletService {
   constructor(
     @InjectModel('Wallet') private walletModel: Model<Wallet>,
     @InjectModel('User') private userModel: Model<User>,
-    @InjectModel('Wallet') private transactionModel: Model<Wallet>,
+    @InjectModel('Transaction') private transactionModel: Model<Transaction>,
   ) {}
   //creating a wallet by user
   async createWallet(
@@ -47,10 +48,11 @@ export class WalletService {
   //getting one wallet using wallet_id
   async getOneWallet(walletID: string) {
     const wallet = await this.walletModel.findOne({ _id: walletID }).exec();
-    if (!wallet) {
+    const transactions = await this.transactionModel.find({ wallet: walletID });
+    if (!wallet || !transactions) {
       throw new NotFoundException('Wallet not found!');
     }
-    return { wallet };
+    return { wallet, transactions };
   }
   //funding the wallet or adding income
   async fundWallet(newBalance: number, walletID: string) {
