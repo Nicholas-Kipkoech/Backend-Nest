@@ -3,7 +3,7 @@ import { Body, Controller, Post, Param, Get, Patch } from '@nestjs/common';
 @Controller('wallets')
 export class WalletController {
   constructor(private readonly walletService: WalletService) {}
-  @Post(':email')
+  @Post('create/:email')
   createWallet(
     @Param('email') user: string,
     @Body('address') address: string,
