@@ -8,6 +8,10 @@
 
 ![alt text](images/walletCreation.png)
 
-### 3. A user is able to add income to that account which it updates the `balance` in the wallet.
+### 3. A user is able to add income to that account using `wallet-ID` which it updates the `balance` in the wallet.
 
 ![alt text](images/Fundwallet.png)
+
+### 4. A user is able to view his or her own wallets 
+
+![alt text](images/fetchWallets.png)
