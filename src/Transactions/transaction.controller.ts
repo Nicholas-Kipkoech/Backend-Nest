@@ -16,6 +16,7 @@ export class TransactionController {
       desc,
       amount,
     );
+
     return newTransaction;
   }
   @Get('fetch-all')

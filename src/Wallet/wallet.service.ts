@@ -9,6 +9,7 @@ export class WalletService {
   constructor(
     @InjectModel('Wallet') private walletModel: Model<Wallet>,
     @InjectModel('User') private userModel: Model<User>,
+    @InjectModel('Wallet') private transactionModel: Model<Wallet>,
   ) {}
   //creating a wallet by user
   async createWallet(
@@ -62,4 +63,5 @@ export class WalletService {
     await updatedWallet.wallet.save();
     return { updatedWallet: updatedWallet.wallet };
   }
+  //update balance after transactions
 }
